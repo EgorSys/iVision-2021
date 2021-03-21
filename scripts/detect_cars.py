@@ -6,6 +6,7 @@ import mrcnn.utils
 from mrcnn.model import MaskRCNN
 from pathlib import Path
 
+import openstream
 
 # Configuration that will be used by the Mask-RCNN library
 class MaskRCNNConfig(mrcnn.config.Config):
@@ -14,7 +15,6 @@ class MaskRCNNConfig(mrcnn.config.Config):
     GPU_COUNT = 1
     NUM_CLASSES = 1 + 80  # COCO dataset has 80 classes + one background class
     DETECTION_MIN_CONFIDENCE = 0.6
-
 
 # Filter a list of Mask R-CNN detection results to get only the detected cars / trucks
 def get_car_boxes(boxes, class_ids):
@@ -45,7 +45,7 @@ if not os.path.exists(COCO_MODEL_PATH):
 IMAGE_DIR = os.path.join(ROOT_DIR, "images")
 
 # Video file or camera to process - set this to 0 to use your webcam instead of a video file
-VIDEO_SOURCE = "test_images/parking.mp4"
+VIDEO_SOURCE = "itertest.mpeg"
 
 # Create a Mask-RCNN model in inference mode
 model = MaskRCNN(mode="inference", model_dir=MODEL_DIR, config=MaskRCNNConfig())
